@@ -26,7 +26,7 @@
         }
         nav a {
             margin: 0 15px;
-            color: navy blue;
+            color: white; /* Adjusted color for readability */
             text-decoration: none;
             font-size: 16px;
         }
@@ -37,7 +37,7 @@
             padding: 20px;
             max-width: 600px;
             margin: 20px auto;
-            background: blue;
+            background: white; /* Changed to white for contrast */
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -102,9 +102,9 @@
 
     <div class="container">
         <div id="home" class="form-container active">
-           <h2 contenteditable="true">Welcome to ThikhedzoCV</h2>
-<p>Explore my professional journey and personal achievements by navigating through the various sections of this CV.</p>
- </div>
+            <h2 contenteditable="true">Welcome to ThikhedzoCV</h2>
+            <p>Explore my professional journey and personal achievements by navigating through the various sections of this CV.</p>
+        </div>
         
         <div id="personal" class="form-container">
             <h2 contenteditable="true">Personal Information</h2>
@@ -184,136 +184,122 @@
             <input type="text" id="skill2" placeholder="Enter your second skill" />
             <label>Skill 3</label>
             <input type="text" id="skill3" placeholder="Enter your third skill" />
-          <label>Skill 4</label>
+            <label>Skill 4</label>
             <input type="text" id="skill4" placeholder="Enter your fourth skill" />
             <button onclick="saveSkills()">Save Skills</button>
         </div>
         
         <div id="projects" class="form-container">
             <h2 contenteditable="true">Projects</h2>
-            <textarea id="projects" placeholder="Describe your projects"></textarea>
+            <textarea id="projectDescription" placeholder="Describe your projects"></textarea>
             <button onclick="saveProjects()">Save Projects</button>
         </div>
         
         <div id="contact" class="form-container">
             <h2 contenteditable="true">Contact</h2>
-            <form onsubmit="sendContact(event)">
-                <label>Name</label>
-                <input type="text" id="contactName" placeholder="Enter your name" />
-                <label>Email</label>
-                <input type="text" id="contactEmail" placeholder="Enter your email address" />
-                <label>Message</label>
-                <textarea id="contactMessage" placeholder="Write your message"></textarea>
-                <button type="submit">Send</button>
-            </form>
+            <label>Contact Form</label>
+            <textarea id="contactForm" placeholder="Enter your contact message"></textarea>
+            <button onclick="saveContact()">Save Contact Info</button>
         </div>
     </div>
-</div>
 
-<footer>
-    <p>© 2024 Thikhedzo. All rights reserved.</p>
-</footer>
+    <footer>
+        <p>&copy; 2024 Thikhedzo. All rights reserved.</p>
+    </footer>
 
-<script>
-    function savePersonalInfo() {
-        const personalInfo = {
-            fullNames: document.getElementById("fullNames").value,
-            surname: document.getElementById("surname").value,
-            identityNumber: document.getElementById("identityNumberDisplay").value,
-            dob: document.getElementById("dob").value,
-            email: document.getElementById("email").value,
-            phone: document.getElementById("phone").value,
-            race: document.getElementById("race").value,
-            sex: document.getElementById("sex").value,
-            nationality: document.getElementById("nationality").value,
-            province: document.getElementById("province").value,
-            city: document.getElementById("city").value,
-            postalCode: document.getElementById("postalCode").value,
-            streetAddress: document.getElementById("streetAddress").value,
-            linkedin: document.getElementById("linkedin").value,
-            criminalRecord: document.getElementById("criminalRecord").value,
-            language1: document.getElementById("language1").value,
-            language2: document.getElementById("language2").value,
-            bio: document.getElementById("bio").value,
+    <script>
+        function showPage(page) {
+            const containers = document.querySelectorAll('.form-container');
+            containers.forEach(container => {
+                container.classList.remove('active');
+            });
+            document.getElementById(page).classList.add('active');
+        }
+
+        // Load personal information from localStorage
+        function loadPersonalInfo() {
+            document.getElementById('fullNames').value = localStorage.getItem('fullNames') || '';
+            document.getElementById('surname').value = localStorage.getItem('surname') || '';
+            document.getElementById('identityNumberDisplay').value = localStorage.getItem('identityNumberDisplay') || '';
+            document.getElementById('dob').value = localStorage.getItem('dob') || '';
+            document.getElementById('email').value = localStorage.getItem('email') || '';
+            document.getElementById('phone').value = localStorage.getItem('phone') || '';
+            document.getElementById('race').value = localStorage.getItem('race') || '';
+            document.getElementById('sex').value = localStorage.getItem('sex') || '';
+            document.getElementById('nationality').value = localStorage.getItem('nationality') || '';
+            document.getElementById('province').value = localStorage.getItem('province') || '';
+            document.getElementById('city').value = localStorage.getItem('city') || '';
+            document.getElementById('postalCode').value = localStorage.getItem('postalCode') || '';
+            document.getElementById('streetAddress').value = localStorage.getItem('streetAddress') || '';
+            document.getElementById('linkedin').value = localStorage.getItem('linkedin') || '';
+            document.getElementById('criminalRecord').value = localStorage.getItem('criminalRecord') || '';
+            document.getElementById('language1').value = localStorage.getItem('language1') || '';
+            document.getElementById('language2').value = localStorage.getItem('language2') || '';
+            document.getElementById('bio').value = localStorage.getItem('bio') || '';
+        }
+
+        function savePersonalInfo() {
+            localStorage.setItem('fullNames', document.getElementById('fullNames').value);
+            localStorage.setItem('surname', document.getElementById('surname').value);
+            localStorage.setItem('identityNumberDisplay', document.getElementById('identityNumberDisplay').value);
+            localStorage.setItem('dob', document.getElementById('dob').value);
+            localStorage.setItem('email', document.getElementById('email').value);
+            localStorage.setItem('phone', document.getElementById('phone').value);
+            localStorage.setItem('race', document.getElementById('race').value);
+            localStorage.setItem('sex', document.getElementById('sex').value);
+            localStorage.setItem('nationality', document.getElementById('nationality').value);
+            localStorage.setItem('province', document.getElementById('province').value);
+            localStorage.setItem('city', document.getElementById('city').value);
+            localStorage.setItem('postalCode', document.getElementById('postalCode').value);
+            localStorage.setItem('streetAddress', document.getElementById('streetAddress').value);
+            localStorage.setItem('linkedin', document.getElementById('linkedin').value);
+            localStorage.setItem('criminalRecord', document.getElementById('criminalRecord').value);
+            localStorage.setItem('language1', document.getElementById('language1').value);
+            localStorage.setItem('language2', document.getElementById('language2').value);
+            localStorage.setItem('bio', document.getElementById('bio').value);
+            alert('Personal information saved!');
+        }
+
+        function saveEducation() {
+            localStorage.setItem('degree', document.getElementById('degree').value);
+            localStorage.setItem('fieldOfStudy', document.getElementById('fieldOfStudy').value);
+            localStorage.setItem('institution', document.getElementById('institution').value);
+            localStorage.setItem('location', document.getElementById('location').value);
+            localStorage.setItem('graduationDate', document.getElementById('graduationDate').value);
+            localStorage.setItem('coursework', document.getElementById('coursework').value);
+            localStorage.setItem('honors', document.getElementById('honors').value);
+            alert('Education saved!');
+        }
+
+        function saveExperience() {
+            localStorage.setItem('position', document.getElementById('position').value);
+            localStorage.setItem('company', document.getElementById('company').value);
+            localStorage.setItem('duration', document.getElementById('duration').value);
+            alert('Work experience saved!');
+        }
+
+        function saveSkills() {
+            localStorage.setItem('skill1', document.getElementById('skill1').value);
+            localStorage.setItem('skill2', document.getElementById('skill2').value);
+            localStorage.setItem('skill3', document.getElementById('skill3').value);
+            localStorage.setItem('skill4', document.getElementById('skill4').value);
+            alert('Skills saved!');
+        }
+
+        function saveProjects() {
+            localStorage.setItem('projectDescription', document.getElementById('projectDescription').value);
+            alert('Projects saved!');
+        }
+
+        function saveContact() {
+            localStorage.setItem('contactForm', document.getElementById('contactForm').value);
+            alert('Contact information saved!');
+        }
+
+        window.onload = function() {
+            loadPersonalInfo();
+            // You can also add similar loading functions for education, experience, skills, projects, and contact if needed
         };
-        localStorage.setItem('personalInfo', JSON.stringify(personalInfo));
-        alert('Personal Information Saved!');
-    }
-
-    function saveEducation() {
-        const education = {
-            degree: document.getElementById("degree").value,
-            fieldOfStudy: document.getElementById("fieldOfStudy").value,
-            institution: document.getElementById("institution").value,
-            location: document.getElementById("location").value,
-            graduationDate: document.getElementById("graduationDate").value,
-            coursework: document.getElementById("coursework").value,
-            honors: document.getElementById("honors").value,
-        };
-        localStorage.setItem('education', JSON.stringify(education));
-        alert('Education Saved!');
-    }
-
-    function saveExperience() {
-        const experience = {
-            position: document.getElementById("position").value,
-            company: document.getElementById("company").value,
-            duration: document.getElementById("duration").value,
-        };
-        localStorage.setItem('experience', JSON.stringify(experience));
-        alert('Experience Saved!');
-    }
-
-    function saveSkills() {
-        const skills = {
-            skill1: document.getElementById("skill1").value,
-            skill2: document.getElementById("skill2").value,
-            skill3: document.getElementById("skill3").value,
-          skill4: document.getElementById("skill4").value,
-        };
-        localStorage.setItem('skills', JSON.stringify(skills));
-        alert('Skills Saved!');
-    }
-
-    function saveProjects() {
-        const projects = document.getElementById("projects").value;
-        localStorage.setItem('projects', projects);
-        alert('Projects Saved!');
-    }
-
-    function showPage(pageId) {
-        const pages = document.querySelectorAll('.form-container');
-        pages.forEach(page => page.classList.remove('active'));
-        document.getElementById(pageId).classList.add('active');
-    }
-
-    function sendContact(event) {
-        event.preventDefault();
-        alert('Message sent!');
-    }
-
-    // Load saved personal info on page load
-    window.onload = function() {
-        const personalInfo = JSON.parse(localStorage.getItem('personalInfo')) || {};
-        document.getElementById("fullNames").value = personalInfo.fullNames || '';
-        document.getElementById("surname").value = personalInfo.surname || '';
-        document.getElementById("identityNumberDisplay").value = personalInfo.identityNumber || '';
-        document.getElementById("dob").value = personalInfo.dob || '';
-        document.getElementById("email").value = personalInfo.email || '';
-        document.getElementById("phone").value = personalInfo.phone || '';
-        document.getElementById("race").value = personalInfo.race || '';
-        document.getElementById("sex").value = personalInfo.sex || '';
-        document.getElementById("nationality").value = personalInfo.nationality || '';
-        document.getElementById("province").value = personalInfo.province || '';
-        document.getElementById("city").value = personalInfo.city || '';
-        document.getElementById("postalCode").value = personalInfo.postalCode || '';
-        document.getElementById("streetAddress").value = personalInfo.streetAddress || '';
-        document.getElementById("linkedin").value = personalInfo.linkedin || '';
-        document.getElementById("criminalRecord").value = personalInfo.criminalRecord || '';
-        document.getElementById("language1").value = personalInfo.language1 || '';
-        document.getElementById("language2").value = personalInfo.language2 || '';
-        document.getElementById("bio").value = personalInfo.bio || '';
-    }
-</script>
+    </script>
 </body>
 </html>
